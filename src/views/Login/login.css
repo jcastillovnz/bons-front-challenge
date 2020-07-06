@@ -1,0 +1,40 @@
+.container {
+    flex-direction: column;
+    color: white;
+    background-color: #282c34;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.css-input {
+    padding: 8px 24px;
+    border-color: #cccccc;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #959595;
+    border-radius: 5px;
+    text-align: center;
+    border-style: double;
+    font-weight: bold;
+}
+
+.css-input:focus {
+    outline: none;
+}
+
+.button {
+    background-color: #61dafb;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 19px;
+    padding: 8px 100px;
+    text-decoration: none;
+}

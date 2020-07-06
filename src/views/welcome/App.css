@@ -1,0 +1,104 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 20vmin;
+    pointer-events: none;
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.buttonLg {
+    background-color: #61dafb;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 19px;
+    padding: 8px 100px;
+    text-decoration: none;
+}
+
+.buttonSm {
+    background-color: #61dafb;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: Arial;
+    font-size: 12px;
+    padding: 8px 50px;
+    text-decoration: none;
+}
+
+.flexEnd {
+    flex-direction: flex-end;
+}
+
+.App-link {
+    font-size: 28px;
+    font-family: helvetica;
+    font-weight: bold;
+    color: #61dafb;
+    text-transform: uppercase;
+}
+
+.parpadea {
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: parpadeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}
+
+@keyframes parpadeo {
+    0% {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.0;
+    }
+    100% {
+        opacity: 1.0;
+    }
+}

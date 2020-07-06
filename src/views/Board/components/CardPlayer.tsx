@@ -9,7 +9,7 @@ return (
     <div className="cardContainer" >
     
     <div>
-    <img src={iconPlayer} className="player-icon" alt="logo" />
+    <img src={iconPlayer} className="player-icon" alt="Icon card" />
     </div>
     <div style={{marginLeft:40}}>
     <h4> {namePlayer}  </h4>  
@@ -18,11 +18,8 @@ return (
     <h4> |  </h4>  
     </div>
     <div>
-        
     <h4>  HP  32/20 </h4>  
     </div>
-
-
     </div>
     )
 }

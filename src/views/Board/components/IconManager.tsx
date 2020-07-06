@@ -9,17 +9,17 @@ const IconManager =(icon:string): JSX.Element =>{
     case 'damage':
     return(
     <div>
-    <img src={IconDamage} className="player-icon" alt="logo"/>
+    <img src={IconDamage} className="player-icon" alt="Icon"/>
     </div>)
     case 'shield':
     return(
     <div>
-    <img src={IconShield} className="player-icon" alt="logo"/>
+    <img src={IconShield} className="player-icon" alt="Icon"/>
     </div>)
     case 'heal':
             return(
             <div>
-            <img src={IconHeal} className="player-icon" alt="logo"/>
+            <img src={IconHeal} className="player-icon" alt="Icon"/>
             </div>)
 
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import {useHistory } from 'react-router-dom'
 import './login.css';
 import { useForm } from "react-hook-form";
 import { loginService } from  './../../api/services'
@@ -9,13 +9,12 @@ const Welcome = (): JSX.Element => {
  
     const onSubmit =  async (data:{name:string}) =>{ 
         const { name } = data;
-        console.log(name);
         const IsLogin =  await loginService(name)
         if (!IsLogin) {
-            console.log("error")
-			alert(IsLogin);
+			alert("Opps hubo un error, intenta mas tarde");
 			history.push('/login');
 		} else {
+            console.log("login : ", IsLogin)
             history.push({
 				pathname: '/Board',
 				state: { name: name },

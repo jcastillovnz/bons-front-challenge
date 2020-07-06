@@ -4,18 +4,18 @@ import shieldIcon from '../../../assets/shield.svg'
 
 
 interface props {
-    namePlayer?:string;
+    shield?:number;
 }
 
-const CardPlayer =({ namePlayer}:props):JSX.Element=>{
+const CardPlayer =({ shield }:props):JSX.Element=>{
 return (
     <div className="shieldContainer" >
     
     <div>
-    <img src={shieldIcon} className="shield-icon imgCenter" />
+    <img src={shieldIcon} className="shield-icon imgCenter" alt="Icon" />
     </div>
     <div className="textCenter" >
-    <h4>SHIELD: 20  </h4>  
+    <h4>SHIELD: {shield}  </h4>  
     </div>
     </div>
     )

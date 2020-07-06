@@ -17,14 +17,12 @@ const Welcome = (): JSX.Element => {
             </p>
            < Link to="/login" >
 
-            <a style={{fontSize:25}}
+            <p style={{fontSize:25}}
                 className="App-link 
                 blinks"
-            
-                rel="noopener noreferrer"
             >
                 PLAY GAME
-            </a>
+            </p>
             </Link>
         </header>
     </div>);

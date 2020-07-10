@@ -5,32 +5,30 @@ import EnemyIcon from '../../assets/monster.svg'
 import { CardPlayer, CardShield, BoardTurn, CardGame } from './components'
 
 
-const Welcome = (props): JSX.Element => {
-const { name } = props.location.state;
+const Welcome = ({name}:{name:string}): JSX.Element => {
+
 const [activeCard, setActiveCard] = useState(0);
 const handleSelectedCard = (cardId)=>{
-console.log("selected card", cardId)
 setActiveCard(cardId)
 }
-
     return (
         <div className="container">
 
             <div className="wrapper ">
                 <div className="enemy wrapperItem">
-                    < CardPlayer namePlayer="Monster" iconPlayer={EnemyIcon} />
+                < CardPlayer namePlayer="Monster" iconPlayer={EnemyIcon} />
                 </div>
                 <div className="shield-enemy wrapperItem">
-                    <CardShield shield={20} />
+                <CardShield shield={20} />
                 </div>
                 <div className="turns wrapperItem">
-                    <BoardTurn />
+                <BoardTurn current={20} past={10} left={10} />
                 </div>
                 <div className="player wrapperItem">
-                    <CardPlayer namePlayer={name} iconPlayer={playerIcon} />
+                <CardPlayer namePlayer={name} iconPlayer={playerIcon} />
                 </div>
                 <div className="shield-player wrapperItem">
-                    <CardShield shield={20} />
+                <CardShield shield={20} />
                 </div>
                 <div onClick={()=>handleSelectedCard(1)} className={`colSm1 wrapperItem ${activeCard===1? 'active': null }`}>
                 <CardGame  card={'damage'} />
@@ -41,7 +39,6 @@ setActiveCard(cardId)
                 <div onClick={()=>handleSelectedCard(3)}  className={`colSm3 wrapperItem ${activeCard===3? 'active': null }`}>
                 <CardGame  card={'heal'}/>
                  </div>
-              
             </div>
 
 

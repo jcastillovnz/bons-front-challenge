@@ -1,25 +1,30 @@
 import React from 'react';
-import {useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import './login.css';
 import { useForm } from "react-hook-form";
-import { loginService } from  './../../api/services'
-const Welcome = (): JSX.Element => {
+import { init as initGame } from './../../store/actions'
+import { apiLoginService } from './../../api/services'
+const Login = (): JSX.Element => {
+    const dispatch = useDispatch()
     const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
- 
-    const onSubmit =  async (data:{name:string}) =>{ 
+
+    const onSubmit = async (data: { name: string }) => {
         const { name } = data;
-        const IsLogin =  await loginService(name)
-        if (!IsLogin) {
-			alert("Opps hubo un error, intenta mas tarde");
-			history.push('/login');
-		} else {
-            console.log("login : ", IsLogin)
-            history.push({
-				pathname: '/Board',
-				state: { name: name },
-			});
-		}
+        apiLoginService(name).then((response: {
+            id: string,
+            currentTurn: number,
+            maxTurns: number,
+            turnsLeft: number
+        }) => {
+            dispatch(initGame({name, ...response}))
+            history.push({ pathname: '/Board' });
+        }).catch((reason) => {
+            console.log(reason)
+            alert("Opps hubo un error")
+        })
+
     }
     return (
         <div className="container">
@@ -42,4 +47,4 @@ const Welcome = (): JSX.Element => {
         </div>);
 }
 
-export default Welcome;
+export default Login;

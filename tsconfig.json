@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "jsx": "react",
     "target": "es6",
+    "isolatedModules": false,
     "lib": [
       "dom",
       "dom.iterable",

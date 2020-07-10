@@ -1,3 +1,3 @@
-import {loginService} from './services'
+import { apiLoginService } from './services'
 
-export {loginService}
+export { apiLoginService }

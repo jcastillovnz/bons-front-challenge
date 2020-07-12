@@ -6,17 +6,17 @@ import IconHeal from '../../../assets/medicine.svg'
 const IconManager =(icon:string): JSX.Element =>{
 
     switch(icon) {
-    case 'damage':
+    case 'DAMAGE':
     return(
     <div>
     <img src={IconDamage} className="player-icon" alt="Icon"/>
     </div>)
-    case 'shield':
+    case 'SHIELD':
     return(
     <div>
     <img src={IconShield} className="player-icon" alt="Icon"/>
     </div>)
-    case 'heal':
+    case 'HEAL':
             return(
             <div>
             <img src={IconHeal} className="player-icon" alt="Icon"/>

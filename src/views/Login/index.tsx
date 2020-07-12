@@ -3,27 +3,17 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import './login.css';
 import { useForm } from "react-hook-form";
-import { init as initGame } from './../../store/actions'
-import { apiLoginService } from './../../api/services'
+import { loginGame } from './../../store/actions';
+
+
 const Login = (): JSX.Element => {
     const dispatch = useDispatch()
     const history = useHistory();
     const { register, handleSubmit, errors } = useForm();
-
     const onSubmit = async (data: { name: string }) => {
         const { name } = data;
-        apiLoginService(name).then((response: {
-            id: string,
-            currentTurn: number,
-            maxTurns: number,
-            turnsLeft: number
-        }) => {
-            dispatch(initGame({name, ...response}))
-            history.push({ pathname: '/Board' });
-        }).catch((reason) => {
-            console.log(reason)
-            alert("Opps hubo un error")
-        })
+        dispatch(loginGame(name,
+        () => { history.push({ pathname: '/Board' }); }))
 
     }
     return (

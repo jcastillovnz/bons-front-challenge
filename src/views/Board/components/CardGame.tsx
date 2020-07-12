@@ -13,8 +13,8 @@ const CardGame = ({ card }: props): JSX.Element => {
                     {IconManager(card)}
                 </div>
                 <p>
-                    DAMAGE
-    </p>
+                    {card}
+                </p>
             </div>
         </div>
     )

@@ -37,6 +37,12 @@
     -webkit-animation-iteration-count: infinite;
 }
 
+.containerLoader {
+    flex-direction: center;
+    z-index: 100000;
+    justify-content: center;
+}
+
 @-moz-keyframes blinks {
     0% {
         opacity: 1.0;

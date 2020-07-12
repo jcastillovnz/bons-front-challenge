@@ -1,52 +1,88 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import playerIcon from '../../assets/hacker.svg'
-import EnemyIcon from '../../assets/monster.svg'
 import { CardPlayer, CardShield, BoardTurn, CardGame } from './components'
+import { playTurn } from 'src/store/actions';
 
 
-const Welcome = ({name}:{name:string}): JSX.Element => {
+const Board = ({
+    id,
+    playerName,
+    playerHp,
+    playerMaxHp,
+    playerShield,
+    monsterImage,
+    monsterName,
+    monsterHp,
+    monsterMaxHp,
+    monsterShield,
+    currentTurn,
+    maxTurns,
+    onPlayCard,
+    onPlayTurn,
+    cards,
+    playerTurn,
+    turnsLeft }: {
+        onPlayCard: any,
+        onPlayTurn:any,
+        id: string,
+        playerName: string,
+        monsterImage: string,
+        playerMaxHp: number,
+        playerHp: number,
+        playerShield: number,
+        monsterName: string,
+        monsterMaxHp: number,
+        monsterHp: number,
+        monsterShield: number,
+        currentTurn: number,
+        maxTurns: number,
+        turnsLeft: number,
+        playerTurn:string,
+        cards: [{ id: string, value: number, effect: string }]
+    }): JSX.Element => {
 
-const [activeCard, setActiveCard] = useState(0);
-const handleSelectedCard = (cardId)=>{
-setActiveCard(cardId)
-}
+    const [activeCard, setActiveCard] = useState('');
+    const handleSelectedCard = (cardId) => {
+         onPlayCard(cardId)
+         setActiveCard(cardId)
+    }
+
+
+
     return (
         <div className="container">
 
             <div className="wrapper ">
-                <div className="enemy wrapperItem">
-                < CardPlayer namePlayer="Monster" iconPlayer={EnemyIcon} />
+                <div className={`enemy wrapperItem ${playerTurn==='MONSTER'? 'active' : null}`}>
+                    < CardPlayer namePlayer={monsterName}
+                        hp={monsterHp}
+                        maxHp={monsterMaxHp}
+                        iconPlayer={monsterImage} />
                 </div>
                 <div className="shield-enemy wrapperItem">
-                <CardShield shield={20} />
+                    <CardShield shield={monsterShield} />
                 </div>
                 <div className="turns wrapperItem">
-                <BoardTurn current={20} past={10} left={10} />
+                    <BoardTurn onPlayTurn={onPlayTurn} current={currentTurn} past={10} left={turnsLeft} />
                 </div>
-                <div className="player wrapperItem">
-                <CardPlayer namePlayer={name} iconPlayer={playerIcon} />
+                <div className={`player wrapperItem ${playerTurn==='PLAYER'? 'active' : null}`}   >
+                    <CardPlayer namePlayer={playerName}
+                        hp={playerHp}
+                        maxHp={playerMaxHp}
+                        iconPlayer={playerIcon} />
                 </div>
                 <div className="shield-player wrapperItem">
-                <CardShield shield={20} />
+                    <CardShield shield={playerShield} />
                 </div>
-                <div onClick={()=>handleSelectedCard(1)} className={`colSm1 wrapperItem ${activeCard===1? 'active': null }`}>
-                <CardGame  card={'damage'} />
-                 </div>
-                <div onClick={()=>handleSelectedCard(2)}  className={`colSm2 wrapperItem ${activeCard===2? 'active': null }`} >
-                <CardGame  card={'shield'}/>
-                </div>
-                <div onClick={()=>handleSelectedCard(3)}  className={`colSm3 wrapperItem ${activeCard===3? 'active': null }`}>
-                <CardGame  card={'heal'}/>
-                 </div>
+                {cards.map((card, index) => (
+                    <div key={card.id} onClick={() => handleSelectedCard(card.id)}
+                        className={`colSm${index + 1}
+                         wrapperItem ${activeCard === card.id ? 'active' : null}`}>
+                        <CardGame card={card.effect} />
+                    </div>))}
             </div>
-
-
-
-
-
-
         </div>);
 }
 
-export default Welcome;
+export default Board;

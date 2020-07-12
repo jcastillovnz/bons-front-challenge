@@ -3,15 +3,16 @@ interface props {
     current?: number;
     past?: number;
     left?: number;
+    onPlayTurn:any;
 }
 
-const BoardTurn = ({ current, past, left }: props): JSX.Element => {
+const BoardTurn = ({ current, past, left, onPlayTurn }: props): JSX.Element => {
+    console.log("onplay turn on board: ", onPlayTurn)
     return (
         <div className="boardTurnContainer" >
             <div className="header">
                 <h3>TURNS</h3>
             </div>
-
             <div className="contentTurns">
                 <h4>CURRENT</h4>
                 <p>{current}</p>
@@ -21,9 +22,7 @@ const BoardTurn = ({ current, past, left }: props): JSX.Element => {
                 <p>{left}</p>
 
             </div>
-
-
-            <button className='buttonSm ' >END TURN</button>
+            <button onClick={onPlayTurn} className='buttonSm'>END TURN</button>
         </div>
     )
 }

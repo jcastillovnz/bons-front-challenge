@@ -1,3 +1,21 @@
-import { apiLoginService } from './services'
+import {
+    apiLoginService,
+    apiGetGameByIdService,
+    apiGetMonterByIdService,
+    apiGetPlayerByIdService,
+    apiGetMonsterByGameIdService,
+    apiGetPlayersCardsByPlayerIdService,
+    apiGetPlayerByGameIdService,
+    apiPlayNextTurnService
+} from './services'
 
-export { apiLoginService }
+export {
+    apiLoginService, 
+    apiGetGameByIdService,
+    apiGetMonterByIdService,
+    apiGetPlayerByIdService,
+    apiGetMonsterByGameIdService,
+    apiGetPlayersCardsByPlayerIdService,
+    apiGetPlayerByGameIdService,
+    apiPlayNextTurnService,
+}

@@ -86,7 +86,7 @@ function gameReducer(state = initState, action: {
       return state;
         case SET_GAME_CARDS:
       case SET_GAME_CARDS:
-        state = dotProp.set(state, 'cards', action.payload.cards);
+        state = dotProp.set(state, 'cards', [...action.payload.cards]);
       return state;
       case SET_PLAYER_SELECTED_CARD:
         state = dotProp.set(state, 'playerSelectedCard', action.payload.cardId);

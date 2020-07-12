@@ -1,25 +1,25 @@
 import React from 'react';
 interface props {
     current?: number;
-    past?: number;
+    maxTurns?: number;
     left?: number;
-    onPlayTurn:any;
+    onPlayTurn: any;
 }
 
-const BoardTurn = ({ current, past, left, onPlayTurn }: props): JSX.Element => {
-    console.log("onplay turn on board: ", onPlayTurn)
+const BoardTurn = ({ current, left, onPlayTurn, maxTurns }: props): JSX.Element => {
     return (
         <div className="boardTurnContainer" >
             <div className="header">
                 <h3>TURNS</h3>
             </div>
             <div className="contentTurns">
+                <h4>MAX TURN</h4>
+                <div>{maxTurns}</div>
                 <h4>CURRENT</h4>
-                <p>{current}</p>
-                <h4>PAST</h4>
-                <p>{past}</p>
+                <div>{current}</div>
+
                 <h4>LEFT</h4>
-                <p>{left}</p>
+                <div>{left}</div>
 
             </div>
             <button onClick={onPlayTurn} className='buttonSm'>END TURN</button>

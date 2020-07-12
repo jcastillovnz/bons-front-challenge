@@ -91,7 +91,7 @@ export function setPlayerEffect(data: {
 }) {
   return {
     type: SET_PLAYER_EFFECT,
-    payload: data
+    payload:{monsterEffect:data}
   };
 }
 

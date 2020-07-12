@@ -11,6 +11,7 @@ import {
     setCards as setCardsAction,
     showLoader as showLoaderAction,
     setPlayerTurn as setPlayerTurnAction,
+    setMonsterEffect as setMonsterEffectAction,
 
 } from './actions';
 import {
@@ -20,6 +21,7 @@ import {
     apiPlayNextTurnService,
     apiGetPlayerByIdService,
     apiGetMonterByIdService,
+    apiGetGameByIdService
 } from './../api'
 
 // WORKERS
@@ -53,17 +55,21 @@ function* playTurn(action: {type: string; payload: {gameId:string, playerSelecte
     action.payload.gameId,
     action.payload.playerSelectedCard);
     yield put(setGameAction(turnPlayerGameData.game))
-    console.log("SAGAS TURN", action.payload.currentTurn%2 === 0? 'PLAYER': 'MONSTER', "TURNO: ", action.payload.currentTurn)
     const playerData = yield call(apiGetPlayerByIdService, action.payload.playerId);
     yield put(setPlayerAction(playerData))
-    
-    yield delay(2000);
     const turnMonsterGameData = yield call(apiPlayNextTurnService, 
         action.payload.gameId);
-        yield put(setGameAction(turnMonsterGameData.game))
-        console.log("turn monster : ", turnMonsterGameData)
+        yield put(setMonsterEffectAction(turnMonsterGameData.monsterEffect))
+        yield delay(2000);
+        const gameData = yield call(apiGetGameByIdService, action.payload.gameId);
+        yield put(setGameAction(gameData))
+        yield delay(1000);
     const monsterData = yield call(apiGetMonterByIdService, action.payload.monsterId);
     yield put(setMonsterAction(monsterData))
+    yield put(setMonsterEffectAction({value:null, effect:null}))
+    const playerCardsData = yield call(apiGetPlayersCardsByPlayerIdService, action.payload.playerId);
+    yield put (setCardsAction(playerCardsData)) 
+
 
 
 

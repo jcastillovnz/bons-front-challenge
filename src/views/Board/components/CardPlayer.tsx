@@ -1,4 +1,5 @@
 import React from 'react';
+import { Loader } from './../components'
 interface props {
     iconPlayer:string;
     namePlayer:string;
@@ -9,7 +10,6 @@ interface props {
 const CardPlayer =({iconPlayer, namePlayer, maxHp, hp}:props ):JSX.Element=>{
 return (
     <div className="cardContainer" >
-    
     <div>
     <img src={iconPlayer} className="player-icon" alt="Icon card" />
     </div>
@@ -21,7 +21,9 @@ return (
     </div>
     <div>
     <h4>HP {maxHp} / {hp} </h4>  
+    
     </div>
+     
     </div>
     )
 }

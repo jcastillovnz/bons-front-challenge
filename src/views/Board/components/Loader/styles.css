@@ -1,18 +1,12 @@
-.loader {
-    border: 16px solid #f3f3f3;
+.loader-sm {
+    border: 5px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 16px solid #3498db;
-    width: 120px;
-    height: 120px;
+    border-top: 5px solid #3498db;
+    width: 20px;
+    height: 20px;
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;
-    margin: auto;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    position: fixed;
 }
 
 .loader-lg {
@@ -32,7 +26,7 @@
     position: fixed;
 }
 
-.loader-container {
+body {
     background-color: #323232;
 }
 

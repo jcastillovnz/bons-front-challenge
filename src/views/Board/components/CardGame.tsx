@@ -2,9 +2,10 @@ import React from 'react';
 import IconManager from './IconManager'
 
 interface props {
-    card?: string
+    card: string;
+    value:number;
 }
-const CardGame = ({ card }: props): JSX.Element => {
+const CardGame = ({ card, value }: props): JSX.Element => {
 
     return (
         <div className="cardContainer hoverSelectedCard" >
@@ -12,9 +13,15 @@ const CardGame = ({ card }: props): JSX.Element => {
                 <div>
                     {IconManager(card)}
                 </div>
-                <p>
-                    {card}
-                </p>
+                <div>
+                {card}
+                </div>
+                <div>
+                {value}
+                </div>
+                   
+            
+            
             </div>
         </div>
     )

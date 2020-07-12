@@ -4,12 +4,11 @@ import {
   SET_MONSTER,
   SET_PLAYER, SET_GAME,
   SET_GAME_CARDS,
-  SET_SELECTED_CARD,
   SET_PLAYER_TURN,
   SHOW_LOADER,
-  SET_PLAYER_EFFECT,
   SET_MONSTER_EFFECT,
-  SET_PLAYER_SELECTED_CARD
+  SET_PLAYER_SELECTED_CARD,
+  SET_IS_DISABLE_BOARD
 } from './actionTypes';
 import {
   apiGetGameByIdService,
@@ -58,6 +57,15 @@ export function setPlayerTurn(data: {
   };
 }
 
+export function setIsDisableBoard(data: {
+  isDisableBoard: boolean,
+}) {
+  return {
+    type: SET_IS_DISABLE_BOARD,
+    payload: data
+  };
+}
+
 export function showLoader(data: { showLoader: boolean }) {
   return {
     type: SHOW_LOADER,
@@ -80,21 +88,9 @@ export function setMonsterEffect(data: {
 }) {
   return {
     type: SET_MONSTER_EFFECT,
-    payload: data
+    payload:{monsterEffect: data}
   };
 }
-
-export function setPlayerEffect(data: {
-  cardId: string,
-  value?: number,
-  effect?: string,
-}) {
-  return {
-    type: SET_PLAYER_EFFECT,
-    payload:{monsterEffect:data}
-  };
-}
-
 
 export function setGame(data: {
   id: string,
@@ -147,9 +143,6 @@ export function setCards(data: [{
 }
 
 
-
-
-
 export function loginGame(name: string, onCallBack: any) {
   return function (dispatch) {
     apiLoginService(name).then((gameData: {
@@ -167,61 +160,6 @@ export function loginGame(name: string, onCallBack: any) {
   }
 }
 
-export function getPlayerByGameId(gameId: string) {
-  return function (dispatch) {
-    apiGetPlayerByGameIdService(gameId).then((playerData) => {
-      dispatch(setPlayer(playerData))
-    }).catch((reason) => {
-      console.log(reason)
-      alert("Opps hubo un error")
-    })
-  }
-}
-
-export function getMonsterByGameId(gameId: string) {
-  return function (dispatch) {
-    apiGetMonsterByGameIdService(gameId).then((monsterData) => {
-      dispatch(setMonster(monsterData))
-    }).catch((reason) => {
-      console.log(reason)
-      alert("Opps hubo un error")
-    })
-  }
-}
-
-
-
-export function getPlayerCardsByPlayerId(playerId: string, callBack?: void) {
-  return function (dispatch) {
-    apiGetPlayersCardsByPlayerIdService(playerId).then((response) => {
-
-    }).catch((reason) => {
-      console.log(reason)
-      alert("Opps hubo un error")
-    })
-  }
-}
-
-export function getMonsterByMonsterId(monsterId: string) {
-  return apiGetMonterByIdService(monsterId).then((response) => {
-
-  }).catch((reason) => {
-    console.log(reason)
-    alert("Opps hubo un error")
-  })
-}
-
-
-export function getPlayerByPlayerId(playerId: string) {
-  return apiGetPlayerByIdService(playerId).then((response) => {
-
-  }).catch((reason) => {
-    console.log(reason)
-    alert("Opps hubo un error")
-  })
-}
-
-
 export function getGameByGameId(gameId: string) {
   return function (dispatch) {
     apiGetGameByIdService(gameId).then((response) => {
@@ -233,14 +171,3 @@ export function getGameByGameId(gameId: string) {
   }
 }
 
-export function PlayNextTurnByGameId(gameId: string, cardId?: string) {
-  return function (dispatch) {
-    return apiPlayNextTurnService(gameId, cardId ? cardId : null).then((gameData) => {
-      console.log("apiPlayNextTurnService: ", gameData)
-      dispatch(setGame(gameData.game))
-    }).catch((reason) => {
-      console.log(reason)
-      alert("Opps hubo un error")
-    })
-  }
-}

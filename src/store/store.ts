@@ -6,10 +6,8 @@ import gameReducer from './reducer';
 import sagas from './sagas'
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [thunk, sagaMiddleware];
-///const store = createStore(gameReducer, compose(applyMiddleware(thunk)), composeWithDevTools());
 const enhancersMiddlewares = applyMiddleware(...middlewares);
 const store =  compose(enhancersMiddlewares)(createStore)(gameReducer)
-
 sagaMiddleware.run(sagas);
 export default store
 

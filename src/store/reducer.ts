@@ -5,10 +5,9 @@ import {
   SET_GAME_CARDS,
   SET_GAME,
   SHOW_LOADER,
-  SET_SELECTED_CARD,
   SET_PLAYER_TURN,
   SET_MONSTER_EFFECT,
-  SET_PLAYER_EFFECT,
+  SET_IS_DISABLE_BOARD,
   SET_PLAYER_SELECTED_CARD
 } from './actionTypes'
 
@@ -29,10 +28,11 @@ const initState = (): object => {
     monsterHp: 0,
     monsterShield: 0,
     monsterMaxHp: 0,
-    cardId:'',
-    playerSelectedCard:'',
-    cards:[],
-    playerEffect:{value:0, effect:'', cardId:''}
+    isDisableBoard: false,
+    cardId: '',
+    playerSelectedCard: '',
+    cards: [],
+    playerEffect: { value: 0, effect: '', cardId: '' }
 
 
   }
@@ -51,12 +51,13 @@ function gameReducer(state = initState, action: {
     maxHp?: number,
     image?: string,
     cards: Array<object>,
-    cardId:string,
-    showLoader:boolean,
-    playerTurn:string,
-    monsterEffect:{value:number, effect:string},
-    playerEffect:{value?:number, effect?:string, cardId:string},
-    playerSelectedCard:string
+    cardId: string,
+    showLoader: boolean,
+    playerTurn: string,
+    monsterEffect: { value: number, effect: string },
+    playerEffect: { value?: number, effect?: string, cardId: string },
+    playerSelectedCard: string,
+    isDisableBoard: boolean
   }
 }) {
   switch (action.type) {
@@ -65,6 +66,9 @@ function gameReducer(state = initState, action: {
       state = dotProp.set(state, 'currentTurn', action.payload.currentTurn);
       state = dotProp.set(state, 'maxTurns', action.payload.maxTurns);
       state = dotProp.set(state, 'turnsLeft', action.payload.turnsLeft);
+      return state;
+    case SET_IS_DISABLE_BOARD:
+      state = dotProp.set(state, 'isDisableBoard', action.payload.isDisableBoard);
       return state;
     case SET_PLAYER:
       state = dotProp.set(state, 'playerId', action.payload.id);
@@ -81,21 +85,23 @@ function gameReducer(state = initState, action: {
       state = dotProp.set(state, 'monsterShield', action.payload.shield);
       state = dotProp.set(state, 'monsterMaxHp', action.payload.maxHp);
       return state
-      case SET_PLAYER_TURN:
+    case SET_PLAYER_TURN:
       state = dotProp.set(state, 'playerTurn', action.payload.playerTurn);
       return state;
-        case SET_GAME_CARDS:
-      case SET_GAME_CARDS:
-        state = dotProp.set(state, 'cards', [...action.payload.cards]);
+    case SET_GAME_CARDS:
+    case SET_GAME_CARDS:
+      state = dotProp.set(state, 'cards', [...action.payload.cards]);
       return state;
-      case SET_PLAYER_SELECTED_CARD:
-        state = dotProp.set(state, 'playerSelectedCard', action.payload.cardId);
+    case SET_PLAYER_SELECTED_CARD:
+      state = dotProp.set(state, 'playerSelectedCard', action.payload.cardId);
       return state;
-      case SET_MONSTER_EFFECT:
-        state = dotProp.set(state, 'monsterEffect', action.payload.monsterEffect);
+    case SET_MONSTER_EFFECT:
+      state = dotProp.set(state, 'monsterEffect', action.payload.monsterEffect);
       return state;
-      case SHOW_LOADER:
-        state = dotProp.set(state, 'showLoader', action.payload.showLoader);
+    case SHOW_LOADER:
+      state = dotProp.set(state, 'showLoader', action.payload.showLoader);
+    case SHOW_LOADER:
+      state = dotProp.set(state, 'showLoader', action.payload.showLoader);
       return state;
     default:
       return state

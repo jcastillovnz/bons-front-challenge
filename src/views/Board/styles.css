@@ -48,6 +48,11 @@
     margin: 0 auto;
 }
 
+.disable-board {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
 .wrapperItem {
     border: 1px solid #61dafb;
     border-radius: 5px;

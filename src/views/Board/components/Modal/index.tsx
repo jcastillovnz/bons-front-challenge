@@ -6,7 +6,7 @@ const Modal =({ handleClose, show, children }): JSX.Element =>{
     return (
       <div className={showHideClassName}>
         <section className="modal-main">
-          <div style={{textAlign:'center', marginTop:'20%'}}>
+          <div style={{textAlign:'center', marginTop:'25%'}}>
          
           {children}
          

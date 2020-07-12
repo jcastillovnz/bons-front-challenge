@@ -9,9 +9,10 @@
 }
 
 .modal-main {
+    box-shadow: 0 0 15px #61dafb;
     position: fixed;
     background: #323232;
-    width: 80%;
+    width: 50%;
     height: 50%;
     top: 50%;
     left: 50%;

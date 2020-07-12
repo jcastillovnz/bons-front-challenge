@@ -7,6 +7,7 @@ import { playTurn } from 'src/store/actions';
 
 const Board = ({
     id,
+    isDisableBoard,
     playerName,
     playerHp,
     playerMaxHp,
@@ -40,6 +41,7 @@ const Board = ({
         maxTurns: number,
         turnsLeft: number,
         playerTurn: string,
+        isDisableBoard:boolean,
         monsterEffect: { value: number, effect: string }
         cards: [{ id: string, value: number, effect: string }]
     }): JSX.Element => {
@@ -55,7 +57,7 @@ const Board = ({
     return (
         <div className="container">
 
-            <div className="wrapper ">
+            <div className={`wrapper ${isDisableBoard? 'disable-board' : null}`}>
                 <div className={`enemy wrapperItem ${playerTurn === 'MONSTER' ? 'active' : null}`}>
                     {playerTurn === 'MONSTER' ? (<Loader type="loader-sm" />) : null}
                     < CardPlayer namePlayer={monsterName}
@@ -63,7 +65,7 @@ const Board = ({
                         maxHp={monsterMaxHp}
                         iconPlayer={monsterImage} />
 
-                   {playerTurn === 'MONSTER' && monsterEffect.effect ?  (<div style={{ textAlign: 'center', color: 'red' }}>
+                   {  monsterEffect.effect ?  (<div style={{ textAlign: 'center', color: 'red' }}>
                         {monsterName} has played {monsterEffect.effect} value:  {monsterEffect.value}
                     </div>):null}
 
@@ -87,12 +89,14 @@ const Board = ({
                 <div className="shield-player wrapperItem">
                     <CardShield shield={playerShield} />
                 </div>
+
                 {cards.slice(-3).map((card, index) => (
                     <div key={card.id} onClick={() => handleSelectedCard(card.id)}
                         className={`colSm${index + 1}
                          wrapperItem ${activeCard === card.id ? 'active' : null}`}>
                         <CardGame card={card.effect} value={card.value} />
                     </div>))}
+                 
             </div>
         </div>);
 }

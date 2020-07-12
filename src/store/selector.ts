@@ -11,6 +11,7 @@ export const getGameData = createSelector(gameData, (data) => {
     cards: get(data, 'cards', ''),
     showLoader: get(data, 'showLoader', ''),
     playerTurn: get(data, 'playerTurn', ''),
+    isDisableBoard: get(data, 'isDisableBoard', ''),
     /* PLAYER DATA */
     playerId: get(data, 'playerId', ''),
     playerName: get(data, 'playerName', ''),
@@ -29,8 +30,6 @@ export const getGameData = createSelector(gameData, (data) => {
 
   }
 });
-
-
 
 export const isLoggedIn = createSelector(gameData, (data) => {
   return get(data, 'id', '') ? true : false
